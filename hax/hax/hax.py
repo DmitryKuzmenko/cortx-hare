@@ -227,8 +227,8 @@ def main():
         LOG.info('Motr API has been started')
         rconfc_starter = _run_rconfc_starter_thread(motr, consul_util=util)
 
-        stats_updater = _run_stats_updater_thread(motr, consul_util=util)
-        bc_updater = _run_bc_updater_thread(motr, consul_util=util)
+        # stats_updater = _run_stats_updater_thread(motr, consul_util=util)
+        # bc_updater = _run_bc_updater_thread(motr, consul_util=util)
         event_poller = _run_thread(create_ha_thread(planner, util))
         # [KN] This is a blocking call. It will work until the program is
         # terminated by signal
@@ -238,8 +238,8 @@ def main():
                               consul_util=util,
                               hax_state=state)
         server.run(threads_to_wait=[*consumer_threads,
-                                    stats_updater,
-                                    bc_updater,
+                                    # stats_updater,
+                                    # bc_updater,
                                     rconfc_starter,
                                     event_poller
                                     ],
